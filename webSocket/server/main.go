@@ -42,8 +42,9 @@ func (ws *WsServer) handleOneConnection(conn *websocket.Conn) {
 		conn.Close()
 	}()
 	var request common.Request
-	println("aa")
-	{ //长链接
+
+	for { //长链接
+		println("aa")
 		conn.SetReadDeadline(time.Now().Add(20 * time.Second))
 		if err := conn.ReadJSON(&request); err != nil {
 			if netError, ok := err.(net.Error); ok {
@@ -53,15 +54,16 @@ func (ws *WsServer) handleOneConnection(conn *websocket.Conn) {
 				}
 			}
 			fmt.Println(err)
-			return
+			break
 		}
 
 		response := common.Response{Sum: request.A + request.B}
 		if err := conn.WriteJSON(response); err != nil {
 			fmt.Println(err)
 		}
+		println("bb")
 	}
-	println("bb")
+
 }
 func (ws *WsServer) Start() error {
 	// var err error
