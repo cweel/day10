@@ -63,6 +63,7 @@ func (ws *WsServer) handleOneConnection(conn *websocket.Conn) {
 		}
 		println("bbb")
 	}
+	println("cc")
 }
 func (ws *WsServer) Start() error {
 	// var err error
