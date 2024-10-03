@@ -44,6 +44,7 @@ func (ws *WsServer) handleOneConnection(conn *websocket.Conn) {
 	var request common.Request
 	println("aa")
 	{ //长链接
+		println("cc")
 		conn.SetReadDeadline(time.Now().Add(20 * time.Second))
 		if err := conn.ReadJSON(&request); err != nil {
 			if netError, ok := err.(net.Error); ok {
