@@ -32,8 +32,10 @@ func main() {
 	request := common.Request{A: 3, B: 4}
 	var response common.Response
 	for i := 0; i < 5; i++ {
-		conn.WriteJSON(request)
-		conn.ReadJSON(&response)
+		err := conn.WriteJSON(request)
+		common.CheckErr(err)
+		err = conn.ReadJSON(&response)
+		common.CheckErr(err)
 		fmt.Println(response.Sum)
 	}
 }
