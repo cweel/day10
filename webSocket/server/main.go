@@ -61,7 +61,7 @@ func (ws *WsServer) handleOneConnection(conn *websocket.Conn) {
 		if err := conn.WriteJSON(response); err != nil {
 			fmt.Println(err)
 		}
-		println("bb")
+		println("bbb")
 	}
 	println("ccc")
 }
